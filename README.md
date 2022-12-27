@@ -14,5 +14,5 @@ python3 object_detect.py --weight <weight>
 ## 開啟client
 
 ```cmd
-python3 client.py --data <想要訓練的dataset路徑> --ip <目標ip> -- port<目標port>
+python3 client.py --data <想要訓練的dataset路徑> --ip <目標ip> -- port <目標port>
 ```
