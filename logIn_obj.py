@@ -5,6 +5,7 @@ import os
 
 def main(opt):
     
+    # 拍圖片 , 更新yaml
     UO =upload_object.Upload_Object(opt)
     UO.start_detect()
 
