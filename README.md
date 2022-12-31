@@ -1,5 +1,11 @@
 # Objectt Detection
 
+## 注意 
+#### 你需要把path的地方改成,server
+
+![image](https://user-images.githubusercontent.com/88101776/210137823-266ce6fb-4569-4427-a7ea-46d902a9d677.png)
+
+
 ## 註冊新的物件
 
 ```cmd
