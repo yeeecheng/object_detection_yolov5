@@ -97,6 +97,7 @@ class Upload_Object:
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
             
+            time.sleep(0.5)
             num+=1
             # 達到指定數量,結束
             if num > self.train_data_num+self.val_data_num:
