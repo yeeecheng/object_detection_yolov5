@@ -45,11 +45,15 @@ def detect(opt):
        
         # 轉化成json
         results =results.pandas().xyxy[0].to_json()
-        results =json.loads(results)["name"]
+        results =json.loads(results)["class"]
         
         write_data=""
+        print(results)
         for i in results:
-            write_data+=class_name[int(i)]
+            
+            write_data+=class_name[results[i]]
+            write_data+="\n"
+            
         ## 存txt
         with open(opt.save,"w") as f:
             f.write(write_data)
