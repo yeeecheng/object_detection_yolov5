@@ -1,7 +1,9 @@
 # Objectt Detection
 
 ## 注意 
-#### 你需要把path的地方改成,server
+* #### 檔案中的best-int8_edgetpu.tflite為使用imgsz320 batch 16 epcoh 20 
+* #### detect寫入txt的內容，如果沒有偵測到會是空的，有偵測到東西就會呈現對應的label，句末沒有加"\n" 
+* #### 你需要把path的地方改成你目前這個檔案的位置<br>例如server路徑為C://Desktop/Convert_TFlite_Server，那就需要將path的地方更改為C://Desktop/Convert_TFlite_Server
 
 ![image](https://user-images.githubusercontent.com/88101776/210137823-266ce6fb-4569-4427-a7ea-46d902a9d677.png)
 
