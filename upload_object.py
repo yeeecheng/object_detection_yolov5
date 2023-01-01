@@ -56,7 +56,7 @@ class Upload_Object:
                 print("Cannot receive Frame")
 
             # 建立資料夾
-            print(self.tar_path)
+          
             if not os.path.isdir(self.tar_path):
                 os.mkdir(self.tar_path)
                 os.mkdir(os.path.join(self.tar_path,"./images"))
@@ -70,11 +70,6 @@ class Upload_Object:
                 mode ="train/"
             else:
                 mode = "val/"
-            # DEBUG用 ,顯示 
-            cv2.imshow("frame",frame)
-           
-            # 存圖
-            cv2.imwrite(os.path.join(self.tar_path,f"./images/{mode}{img_path}.png"),frame)
             
             # 根據圖片大小做label , 取以中央80%的物件
             with open(os.path.join(self.tar_path,f"./labels/{mode}{img_path}.txt") , "w") as f:
@@ -91,6 +86,13 @@ class Upload_Object:
                 str = f"{self.index} {x_center} {y_center} {yolo_w} {yolo_h}\n"
                 
                 f.write(str)
+            img =frame.copy()
+            img = cv2.rectangle(img, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), cv2.LINE_AA)
+            # DEBUG用 ,顯示 
+            cv2.imshow("frame",img)
+           
+            # 存圖
+            cv2.imwrite(os.path.join(self.tar_path,f"./images/{mode}{img_path}.png"),frame)
             
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
