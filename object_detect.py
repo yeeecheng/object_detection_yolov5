@@ -5,7 +5,7 @@ import json
 import subprocess
 import os
 import argparse
-
+import yaml
 def detect(opt):
     
     yolov5_path = os.path.join(opt.root,"./yolov5")
@@ -17,7 +17,13 @@ def detect(opt):
     if not cap.isOpened():
         print("Cannot open camera")
         exit()
+        
+    with open(opt.yaml,'r',encoding= 'utf-8') as f:
+        data = yaml.load(f,Loader=yaml.FullLoader)
     
+    class_name = data["names"]
+    
+    print(f"you have {class_name}")
     while True:
         
         ret,frame = cap.read()
@@ -43,7 +49,7 @@ def detect(opt):
         
         write_data=""
         for i in results:
-            write_data+=results[i]
+            write_data+=class_name[int(i)]
         ## 存txt
         with open(opt.save,"w") as f:
             f.write(write_data)
@@ -58,6 +64,7 @@ def parse_opt(known=False):
     parser =argparse.ArgumentParser()
     parser.add_argument("--root",type=str , default=ROOT )
     parser.add_argument("--weight",type=str , default=os.path.join(ROOT,"./best-int8_edgetpu.tflite") )
+    parser.add_argument("--yaml",type=str,default=os.path.join(ROOT,"./dataset.yaml"))
     parser.add_argument("--imgsz",type=int , default=320)
     parser.add_argument("--iou",type=float,default=0.3)
     parser.add_argument("--conf",type=float,default=0.5)
